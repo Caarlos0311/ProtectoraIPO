@@ -1,0 +1,33 @@
+﻿<Page x:Class="ProtectoraIPO.Paginas.pg_ayudaDesc"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProtectoraIPO.Paginas"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="350"
+      Title="pg_ayudaDesc" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+
+
+        <Label x:Name="lbl_titulo" Content="Label" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" FontWeight="Bold"/>
+        <Button x:Name="btn_atrasDesc" Content="Atrás" Width="40" Height="40" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0"  Grid.Row="0" Grid.RowSpan="2" Click="btn_atrasDesc_Click"/>
+        <Image x:Name="img_foto" Margin="0,0" Width="240" Grid.Row="1"/>
+
+
+        <GroupBox Header="Pasos" x:Name="gb_pasos" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="Auto">
+            <StackPanel x:Name="sp_pasos" HorizontalAlignment="Center" Orientation="Horizontal">
+                <RadioButton x:Name="RB_0" Click="RB_Click" IsChecked="True" Content="1"/>
+            </StackPanel>
+        </GroupBox>
+        <TextBlock x:Name="txt_descripcion" HorizontalAlignment="Stretch" Margin="20,5,20,20" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Stretch" Grid.Row="3"/>
+       
+    </Grid>
+</Page>

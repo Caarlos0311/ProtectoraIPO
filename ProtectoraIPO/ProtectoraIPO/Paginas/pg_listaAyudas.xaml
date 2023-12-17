@@ -1,0 +1,23 @@
+﻿<Page x:Class="ProtectoraIPO.Paginas.pg_listaAyudas"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProtectoraIPO.Paginas"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="350"
+      Title="pg_listaAyudas">
+
+    <Grid>
+        <ListBox x:Name="lb_ayuda" Margin="0,10" BorderBrush="{x:Null}" SelectionChanged="lb_ayuda_SelectionChanged" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Width="5" Height="5" Margin="5" Fill="#FF23B4C8"/>
+                        <TextBlock Text="{Binding Titulo}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

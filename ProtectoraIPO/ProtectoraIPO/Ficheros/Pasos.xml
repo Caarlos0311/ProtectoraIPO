@@ -1,0 +1,35 @@
+﻿<Pasos>
+	<Paso Id="1" Descripcion="En primer lugar debemos introducir nuestro usuario, ya registrado previamente." Foto="Fotos/Ayuda/1.png"/>
+	<Paso Id="2" Descripcion="Seguidamente introducimos la contraseña de nuestro usuario." Foto="Fotos/Ayuda/2.png"/>
+	<Paso Id="3" Descripcion="En cualquier caso, si introducimos mal el usuario o la contraseña nos mostrará un mensaje de valor incorrecto." Foto="Fotos/Ayuda/3.png"/>
+	<Paso Id="4" Descripcion="Para acceder a la protectora, una vez rellenados los campos anteriores, debemos pulsar en el botón de Acceder." Foto="Fotos/Ayuda/4.png"/>
+	<Paso Id="5" Descripcion="Primero debemos introducir nuestro nombre." Foto="Fotos/Ayuda/5.png"/>
+	<Paso Id="6" Descripcion="Acto seguido, nuestros apellidos y pulsamos en siguiente." Foto="Fotos/Ayuda/6.png"/>
+	<Paso Id="7" Descripcion="Introducimos nuestro usuario y una contraseña." Foto="Fotos/Ayuda/7.png"/>
+	<Paso Id="8" Descripcion="Además, debemos añadir un código de control, del que dispone el encargado de supervisar los usuarios creados, para poder realizar el registro." Foto="Fotos/Ayuda/8.png"/>
+	<Paso Id="9" Descripcion="Y pulsamos en registrar." Foto="Fotos/Ayuda/9.png"/>
+	<Paso Id="10" Descripcion="Debemos introducir nuestro usuario y nuestra nueva contraseña." Foto="Fotos/Ayuda/10.png"/>
+	<Paso Id="11" Descripcion="Además, tenemos que introducir un código de control, del que dispone el encargado de supervisar los usuarios creados, para poder realizar el cambio." Foto="Fotos/Ayuda/11.png"/>
+	<Paso Id="12" Descripcion="Y pulsamos en cambiar." Foto="Fotos/Ayuda/12.png"/>
+	<Paso Id="13" Descripcion="Al iniciar sesión lo primero que nos encontramos es ésta interfaz." Foto="Fotos/Ayuda/13.png"/>
+	<Paso Id="14" Descripcion="Si pulsamos en la casa accederemos de nuevo al inicio de sesión." Foto="Fotos/Ayuda/14.png"/>
+	<Paso Id="15" Descripcion="En la tuerca, entraremos en el menú de configuración." Foto="Fotos/Ayuda/15.png"/>
+	<Paso Id="16" Descripcion="Para navegar por las distintas pestañas simplemente debemos pulsar en ellas." Foto="Fotos/Ayuda/16.png"/>
+	<Paso Id="17" Descripcion="Todos los atributos de cada perro, voluntario... están bloqueados, solo podrán modificarse para añadir o actualizar." Foto="Fotos/Ayuda/17.png"/>
+	<Paso Id="18" Descripcion="Para añadir debemos seleccionar este icono." Foto="Fotos/Ayuda/18.png"/>
+	<Paso Id="19" Descripcion="Y rellenar todos los campos. Una vez completados pulsamos en aceptar." Foto="Fotos/Ayuda/19.png"/>
+	<Paso Id="20" Descripcion="Si finalmente no queremos añadir nada, podemos pulsar en el botón de cancelar." Foto="Fotos/Ayuda/20.png"/>
+	<Paso Id="21" Descripcion="Para actualizar debemos seleccionar este icono." Foto="Fotos/Ayuda/21.png"/>
+	<Paso Id="22" Descripcion="Y podremos modificar todos los campos. Una vez completados pulsamos en actualizar." Foto="Fotos/Ayuda/22.png"/>
+	<Paso Id="23" Descripcion="Si finalmente no queremos actualizar nada, podemos pulsar en el botón de cancelar." Foto="Fotos/Ayuda/23.png"/>
+	<Paso Id="24" Descripcion="Para borrar debemos seleccionar este icono." Foto="Fotos/Ayuda/24.png"/>
+	<Paso Id="25" Descripcion="Y nos saltará el siguiente mensaje que debemos aceptar." Foto="Fotos/Ayuda/25.png"/>
+	<Paso Id="26" Descripcion="En el desplegable podemos seleccionar que elementos queremos listar." Foto="Fotos/Ayuda/26.png"/>
+	<Paso Id="27" Descripcion="Pulsando en este botón podemos ir directamente a la pestaña de edición del elemento seleccionado." Foto="Fotos/Ayuda/27.png"/>
+	<Paso Id="28" Descripcion="Aquí podemos seleccionar el tamaño de los botones, entre pequeño, mediano o grande." Foto="Fotos/Ayuda/28.png"/>
+	<Paso Id="29" Descripcion="Para cambiar el tamaño de la letra de la interfaz debemos modificarlo aquí." Foto="Fotos/Ayuda/29.png"/>
+	<Paso Id="30" Descripcion="Cambiar entre el modo oscuro (predeterminado) o el claro." Foto="Fotos/Ayuda/30.png"/>
+	<Paso Id="31" Descripcion="Para quitar los gifs, y solo ver la imagen estática debemos cambiarlo desde aquí." Foto="Fotos/Ayuda/31.png"/>
+	<Paso Id="32" Descripcion="Quitar o poner el sonido." Foto="Fotos/Ayuda/32.png"/>
+	<Paso Id="33" Descripcion="Para confirmar los cambios pulsamos en aplicar." Foto="Fotos/Ayuda/33.png"/>
+</Pasos>

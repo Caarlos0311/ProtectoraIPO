@@ -1,0 +1,44 @@
+﻿<Window x:Class="ProtectoraIPO.win_Preferencias"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProtectoraIPO"
+        mc:Ignorable="d"
+        Title="Preferencias" Height="350" Width="350"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Topmost="True" Icon="Fotos/logoApp.png">
+
+    <Grid x:Name="grid_preferencias" Background="{DynamicResource fondoComboBox}">
+        <StackPanel>
+            <GroupBox Header="APARIENCIA" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,10,0" Style="{DynamicResource GroupBoxStyle}">
+                <ItemsControl>
+                    <Grid Margin="10,5,0,5">
+                        <TextBlock Text="Tamaño de botones"/>
+                        <local:SML_switch x:Name="sml_tBotones" HorizontalAlignment="Right" Height="20" Width="Auto" Margin="10,0"/>
+                    </Grid>
+                    <Grid Margin="10,5,0,5">
+                        <TextBlock Text="Tamaño de la fuente"/>
+                        <local:SML_switch x:Name="sml_tFuente" HorizontalAlignment="Right" Height="20" Width="Auto" Margin="10,0"/>
+                    </Grid>
+                    <Grid Margin="10,5,0,5">
+                        <TextBlock Text="Tema"/>
+                        <local:ToggleButton x:Name="tbtn_tema" Height="17" Width="Auto" HorizontalAlignment="Right" Margin="10,0"/>
+                    </Grid>
+                </ItemsControl>
+            </GroupBox>
+            <GroupBox Header="FUNCIONALIDAD" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,5,10,10" Style="{DynamicResource GroupBoxStyle}">
+                <ItemsControl>
+                    <Grid Margin="10,5,0,5">
+                        <TextBlock Text="GIFs"/>
+                        <local:ToggleButton x:Name="tbtn_gifs" Height="17" Width="Auto" HorizontalAlignment="Right" Margin="10,0"/>
+                    </Grid>
+                    <Grid Margin="10,5,0,5">
+                        <TextBlock Text="Sonidos"/>
+                        <local:ToggleButton x:Name="tbtn_sonidos" Height="17" Width="Auto" HorizontalAlignment="Right" Margin="10,0"/>
+                    </Grid>
+                </ItemsControl>
+            </GroupBox>
+        </StackPanel>
+        <Button x:Name="btn_aplicar" Content="APLICAR" Width="80" Height="35" VerticalAlignment="Bottom" Margin="10, 10" HorizontalAlignment="Center" Click="btn_aplicar_Click" FontSize="18" Style="{DynamicResource ButtonP}"/>
+    </Grid>
+</Window>

@@ -1,0 +1,1236 @@
+﻿<Window x:Class="ProtectoraIPO.Win_Control"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ProtectoraIPO="clr-namespace:ProtectoraIPO" xmlns:local="clr-namespace:ProtectoraIPO"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        mc:Ignorable="d"
+        Title="ProtectoraIPO" Height="450" Width="800" WindowStartupLocation="CenterScreen" MinWidth="700" MinHeight="450" Closing="Window_Closing" Icon="Fotos/logoApp.png">
+
+    <Grid Background="{DynamicResource fondoTerciarioOscuro}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Button x:Name="btn_ayuda_c" Grid.Column="0" HorizontalAlignment="Left" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="50" Height="50" Click="btn_ayuda_Click" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonP}">
+            <Image Source="Fotos/ayuda2.png" Width="40" Height="40" ToolTip="Ayuda"/>
+        </Button>
+        <Button x:Name="btn_config_c" Grid.Column="2" HorizontalAlignment="Right" Margin="0" Grid.Row="2" VerticalAlignment="Center" Width="50" Height="50" Click="btn_config_Click" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource ButtonP}">
+            <Image Source="Fotos/configuracion2.png" Width="40" Height="40" ToolTip="Configuración"/>
+        </Button>
+        <Button x:Name="btn_home" Grid.Column="2" HorizontalAlignment="Right" Margin="0" Grid.Row="0" VerticalAlignment="Center" Width="50" Height="50" Click="btn_home_Click" Background="{x:Null}" BorderBrush="{x:Null}" Style="{DynamicResource ButtonP}">
+            <Image Source="Fotos/casa2.png" Width="32" Height="32" ToolTip="Cerrar Sesión"/>
+        </Button>
+
+        <Border x:Name="b_tabControl" Grid.Column="1" Grid.Row="1" CornerRadius="10" Padding="30" Background="{DynamicResource fondoTerciarioClaro}">
+            <TabControl x:Name="tc_gestion" Style="{DynamicResource TabControlClaroStyle}">
+                <TabItem x:Name="ti_perros" Header="Perros" Style="{DynamicResource TabItemClaroStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="60*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="glb_perros">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="90*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel x:Name="sp_botones_pe" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
+                                <Button x:Name="btn_add_p" Click="mi_addPerros_Click" ToolTip="Añadir Perro" Style="{DynamicResource ButtonStyle}">
+                                    <Image Source="Fotos/anadir2.png"  ToolTip="Añadir Perro" Style="{DynamicResource ImageStyle}"/>
+                                </Button>
+                                <Button x:Name="btn_udt_p" Click="mi_udtPerros_Click" ToolTip="Actualizar" Style="{DynamicResource ButtonStyle}">
+                                    <Image Source="Fotos/actualizar2.png"  ToolTip="Actualizar Perro" Style="{DynamicResource ImageStyle}"/>
+                                </Button>
+                                <Button x:Name="btn_del_p" Click="mi_delPerros_Click" ToolTip="Borrar " Style="{DynamicResource ButtonStyle}">
+                                    <Image Source="Fotos/borrar2.png" ToolTip="Borrar Perro" Style="{DynamicResource ImageStyle}"/>
+
+                                </Button>
+                            </StackPanel>
+                            <ListBox x:Name="lb_perros" ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="lb_perros_SelectionChanged" Grid.Row="1" Style="{DynamicResource ListBoxStyle}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="40" Height="40" Source="{Binding Foto}"/>
+                                            <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center" Margin="10,0" Style="{DynamicResource TextBlockStyle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ContextMenu >
+                                    <ContextMenu >
+                                        <MenuItem x:Name="mi_addPerros" Header="Añadir Perro" Click="mi_addPerros_Click" Style="{DynamicResource MenuItemStyle}">
+                                            <MenuItem.Icon>
+                                                <Image Source="Fotos/anadir2.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Name="mi_udtPerros" Header="Actualizar Perro" Click="mi_udtPerros_Click" Style="{DynamicResource MenuItemStyle}">
+                                            <MenuItem.Icon>
+                                                <Image Source="Fotos/actualizar2.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Name="mi_delPerros" Header="Eliminar Perro" Click="mi_delPerros_Click" Style="{DynamicResource MenuItemStyle}">
+                                            <MenuItem.Icon>
+                                                <Image Source="Fotos/borrar2.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                        </Grid>
+
+                        <GridSplitter x:Name="gs_perros" Grid.Column="1" Style="{DynamicResource GridSplitterStyle}"/>
+
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="55*"/>
+                                <RowDefinition Height="45*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid x:Name="g_accion" Height="Auto" Grid.ColumnSpan="2" Visibility="Collapsed" Background="LightCoral">
+                                <Label x:Name="lbl_accionRealizar_pe" HorizontalAlignment="Center" Content="Actualizar" FontWeight="Bold" VerticalAlignment="Center"  Style="{DynamicResource LabelStyle}"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button x:Name="btn_cancelar_p" Margin="5" Click="btn_cancelar_p_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Cancelar">
+                                        <Image Source="Fotos/cancelar.png" Style="{DynamicResource ImageStyle}"/>
+                                    </Button>
+                                    <Button x:Name="btn_aceptar_p" Margin="5" Click="btn_aceptar_p_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Aceptar">
+                                        <Image Source="Fotos/check.png" Style="{DynamicResource ImageStyle}"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                            <Image x:Name="img_foto_pe" Margin="20,20,20,0" Source="{Binding ElementName=lb_perros, Path=SelectedItem.Foto}" Grid.Row="1"/>
+                            <Button x:Name="btn_cargarImg" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,35,5" IsEnabled="False" Grid.Row="1" Click="cargaImg_Click" ToolTip="Agregar imagen" Style="{DynamicResource ButtonStyle}">
+                                <Image Source="Fotos/foto.png" ToolTip="Agregar imagen" Style="{DynamicResource ImageStyle}"/>
+                            </Button>
+
+                            <GroupBox Grid.Column="1" Header="Rasgos" Margin="10,10,10,0" Grid.Row="1" Style="{DynamicResource GroupBoxStyle}">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="70*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="0">
+                                                <Label Content="Nombre: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3" Style="{DynamicResource LabelStyle}"/>
+                                                <Label Content="Sexo: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                <Label Content="Edad (meses): " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                <Label Content="Peso (Kg): " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                <Label Content="Raza: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="90*"/>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox x:Name="txt_nombre_wc" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_nombre_wc_KeyDown"/>
+                                                    <Image x:Name="adv_nombre_p"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El nombre no puede estar vacío"  />
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="90*"/>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <ComboBox x:Name="cb_sexo_wc" Height="30" Margin="0,0,0,3" VerticalContentAlignment="Center" IsEnabled="False">
+                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Image Source="Fotos/macho.png" Width="20" Height="20" Margin="2,0" ToolTip=""/>
+                                                                <TextBlock Text="Macho" Margin="3,0" ToolTip="Macho" Style="{DynamicResource TextBlockStyle}"/>
+                                                            </StackPanel>
+                                                        </ComboBoxItem>
+                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Image Source="Fotos/hembra.png" Width="22" Height="22"/>
+                                                                <TextBlock Text="Hembra" Margin="5,0" ToolTip="Hembra" Style="{DynamicResource TextBlockStyle}"/>
+                                                            </StackPanel>
+                                                        </ComboBoxItem>
+                                                    </ComboBox>
+                                                    <Image x:Name="adv_sexo_p"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="90*"/>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox x:Name="txt_edad_wc" Height="30" Margin="0,0,0,3" IsEnabled="False" PreviewTextInput="NumberValidationIntTextBox" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_edad_wc_KeyDown"/>
+                                                    <Image x:Name="adv_edad_p"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="La edad no puede estar vacía"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="90*"/>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox x:Name="txt_peso_wc" Height="30" Margin="0,0,0,3" IsEnabled="False" PreviewTextInput="NumberValidationDoubleTextBox" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_peso_wc_KeyDown"/>
+                                                    <Image x:Name="adv_peso_p"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El peso no puede estar vacío"/>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="90*"/>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox x:Name="txt_raza_wc" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}"/>
+                                                    <Image x:Name="adv_raza_p"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="La raza no puede estar vacía"/>
+                                                </Grid>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50*"/>
+                                                <ColumnDefinition Width="50*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <ProtectoraIPO:ToggleButton x:Name="tbtn_sociable_wc" Height="40" Width="40" HorizontalAlignment="Center" Margin="0,3" IsEnabled="False" MouseLeftButtonDown="tbtn_sociable_wc_MouseLeftButtonDown"/>
+                                                <Label x:Name="lbl_sociable_p" Content="No Sociable" HorizontalAlignment="Center"  Style="{DynamicResource LabelStyle}"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <ProtectoraIPO:ToggleButton x:Name="tbtn_ppp_wc" Height="40" Width="40" HorizontalAlignment="Center" Margin="0,3" IsEnabled="False" MouseLeftButtonDown="tbtn_ppp_wc_MouseLeftButtonDown" ToolTip="Perro Potencialmente Peligroso"/>
+                                                <Label x:Name="lbl_ppp_p" Content="No PPP" HorizontalAlignment="Center"  Style="{DynamicResource LabelStyle}"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </ScrollViewer>
+                            </GroupBox>
+                            <ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Expander Grid.Row="0" Header="Detalles" Margin="10,15,10,10" Style="{DynamicResource ExpanderStyle}">
+                                        <GroupBox Grid.Column="0" Margin="0,3,0,0" Style="{DynamicResource GroupBoxStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="70*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="70*"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="Descripción: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3" VerticalAlignment="Top"  Style="{DynamicResource LabelStyle}"/>
+                                                <TextBox Name="txt_descripcion_wc" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,3,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_descripcion_wc_KeyDown"/>
+                                                <StackPanel Grid.Column="0" Grid.Row="1">
+                                                    <Label Content="Padrino: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                    <Label Content="Chip: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                    <Label Content="Fecha entrada: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                    <Label Content="Estado: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="35" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" Grid.Row="1">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="auto"/>
+                                                            <ColumnDefinition Width="80*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                            <Button x:Name="btn_verPadrino" HorizontalAlignment="Left" Click="btn_verPadrino_Click" ToolTip="Ir a Padrino" Style="{DynamicResource ButtonStyle}">
+                                                                <Image Source="Fotos/ver3.png" ToolTip="Ir a Padrino" Style="{DynamicResource ImageStyle}"/>
+                                                            </Button>
+                                                            <Button x:Name="btn_QuitarPadrino" Margin="5,3" HorizontalAlignment="Left" IsEnabled="False" Click="btn_QuitarPadrino_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Borrar Padrino" >
+                                                                <Image Source="Fotos/borrar2.png" Style="{DynamicResource ImageStyle}"/>
+                                                            </Button>
+                                                        </StackPanel>
+                                                        <ComboBox x:Name="cb_padrinos_wc" Height="30" Margin="0,3,0,3" VerticalContentAlignment="Center" IsEnabled="False" Grid.Column="1">
+                                                            <ComboBox.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                                                        <TextBlock Text=" " VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                                                        <TextBlock Text="{Binding Apellidos}" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                                                    </StackPanel>
+                                                                </DataTemplate>
+                                                            </ComboBox.ItemTemplate>
+                                                        </ComboBox>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions >
+                                                            <ColumnDefinition Width="90*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBox x:Name="txt_chip_wc" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_chip_wc_KeyDown"/>
+                                                        <Image x:Name="adv_chip_p" Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0"/>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions >
+                                                            <ColumnDefinition Width="90*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <DatePicker x:Name="dp_fechaEntrada_wc" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource DatePickerStyle}"/>
+                                                        <Image x:Name="adv_fecha_p" Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="Debe de haber una fecha seleccionada"/>
+                                                    </Grid>
+                                                    <ComboBox x:Name="cb_estado_wc" Height="35" Margin="0,0,0,3" VerticalContentAlignment="Center" IsEnabled="False" >
+                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Image Source="Fotos/adoptado.png" Width="30" Height="30" Margin="2,0" />
+                                                                <TextBlock Text="Adoptado" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                            </StackPanel>
+                                                        </ComboBoxItem >
+                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Image Source="Fotos/cuarentena.png" Width="30" Height="30" Margin="2,0"/>
+                                                                <TextBlock Text="Cuarentena" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                            </StackPanel>
+                                                        </ComboBoxItem>
+                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Image Source="Fotos/reservado.png" Width="30" Height="30" Margin="2,0" />
+                                                                <TextBlock Text="Reservado" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                            </StackPanel>
+                                                        </ComboBoxItem>
+                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Image Source="Fotos/fallecido.png" Width="30" Height="30" Margin="2,0"/>
+                                                                <TextBlock Text="Fallecido" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                            </StackPanel>
+                                                        </ComboBoxItem>
+                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}" ToolTip="No se aplica ninguno de los estados anteriores" >
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Image Source="Fotos/vacio.png" Width="30" Height="30" Margin="2,0"/>
+                                                                <TextBlock Text="NA" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                            </StackPanel>
+                                                        </ComboBoxItem>
+                                                    </ComboBox>
+                                                </StackPanel>
+                                            </Grid>
+                                        </GroupBox>
+                                    </Expander>
+                                    <Expander Grid.Row="1" Grid.Column="1" Header="Salud" Margin="10,15,10,10" Style="{DynamicResource ExpanderStyle}">
+                                        <GroupBox Margin="0,3,0,0" Style="{DynamicResource GroupBoxStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50*"/>
+                                                    <ColumnDefinition Width="50*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="50*"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.ColumnSpan="2" Margin="0,3,0,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="50*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Content="Descripción de enfermedades: " HorizontalAlignment="Left" Height="30" Margin="5,3" VerticalAlignment="Top"  Style="{DynamicResource LabelStyle}"/>
+                                                    <TextBox Name="txt_enfermedades" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="1" Grid.ColumnSpan="3" Margin="0,3,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}"/>
+
+                                                </Grid>
+                                                <StackPanel Grid.Row="1">
+                                                    <ProtectoraIPO:ToggleButton x:Name="tbtn_vacunado_wc" Height="40" Width="40" HorizontalAlignment="Center" Margin="0,3" IsEnabled="False" MouseLeftButtonDown="tbtn_vacunado_wc_MouseLeftButtonDown"/>
+                                                    <Label x:Name="lbl_vacunado_p" Content="No Vacunado" HorizontalAlignment="Center"  Style="{DynamicResource LabelStyle}"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="1" Grid.Column="1">
+                                                    <ProtectoraIPO:ToggleButton x:Name="tbtn_esterilizado_wc" Height="40" Width="40" HorizontalAlignment="Center" Margin="0,3" IsEnabled="False" MouseLeftButtonDown="tbtn_esterilizado_wc_MouseLeftButtonDown"/>
+                                                    <Label x:Name="lbl_esterilizado_p" Content="No Esterilizado" HorizontalAlignment="Center"  Style="{DynamicResource LabelStyle}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </GroupBox>
+                                    </Expander>
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="ti_padrinos" Header="Padrinos" Style="{DynamicResource TabItemClaroStyle}" >
+                    <Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="glb_padrinos">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="90*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel x:Name="sp_botones_pa" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
+                                    <Button x:Name="btn_add_pa" Click="mi_addPadrinos_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Añadir Padrino">
+                                        <Image Source="Fotos/anadir2.png" ToolTip="Añadir Padrino" Style="{DynamicResource ImageStyle}"/>
+                                    </Button>
+                                    <Button x:Name="btn_udt_pa" Click="mi_udtPadrinos_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Actualizar Padrino">
+                                        <Image Source="Fotos/actualizar2.png"  Style="{DynamicResource ImageStyle}" ToolTip="Actualizar Padrino"/>
+                                    </Button>
+                                    <Button x:Name="btn_del_pa" Click="mi_delPadrinos_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Borrar Padrino">
+                                        <Image Source="Fotos/borrar2.png" ToolTip="Borrar Padrino" Style="{DynamicResource ImageStyle}"/>
+                                    </Button>
+                                </StackPanel>
+                                <ListBox x:Name="lb_padrinos" Grid.Row="1" ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="lb_padrinos_SelectionChanged" Style="{DynamicResource ListBoxStyle}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                                <TextBlock Text=" " VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                                <TextBlock Text="{Binding Apellidos}" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem x:Name="mi_addPadrinos" Header="Añadir Padrino" Click="mi_addPadrinos_Click" Style="{DynamicResource MenuItemStyle}">
+                                                <MenuItem.Icon>
+                                                    <Image Source="Fotos/anadir2.png" />
+                                                </MenuItem.Icon>
+                                            </MenuItem>
+                                            <MenuItem x:Name="mi_udtPadrinos" Header="Actualizar Padrino" Click="mi_udtPadrinos_Click" Style="{DynamicResource MenuItemStyle}">
+                                                <MenuItem.Icon>
+                                                    <Image Source="Fotos/actualizar2.png" />
+                                                </MenuItem.Icon>
+                                            </MenuItem>
+                                            <MenuItem x:Name="mi_delPadrinos" Header="Eliminar Padrino" Click="mi_delPadrinos_Click" Style="{DynamicResource MenuItemStyle}">
+                                                <MenuItem.Icon>
+                                                    <Image Source="Fotos/borrar2.png" />
+                                                </MenuItem.Icon>
+                                            </MenuItem>
+                                        </ContextMenu>
+                                    </ListBox.ContextMenu>
+                                </ListBox>
+                            </Grid>
+
+                            <GridSplitter x:Name="gs_padrinos" Grid.Column="1" Style="{DynamicResource GridSplitterStyle}"/>
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="80*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid x:Name="g_accion_pa" Height="Auto" Visibility="Collapsed" Background="LightCoral">
+                                    <Label x:Name="lbl_accionRealizar_pa" HorizontalAlignment="Center" Content="Actualizar" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button x:Name="btn_cancelar_pa" Click="btn_cancelar_pa_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Cancelar">
+                                            <Image Source="Fotos/cancelar.png" Style="{DynamicResource ImageStyle}"/>
+                                        </Button>
+                                        <Button x:Name="btn_aceptar_pa" Click="btn_aceptar_pa_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Aceptar">
+                                            <Image Source="Fotos/check.png" Style="{DynamicResource ImageStyle}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="40"/>
+                                        </Grid.RowDefinitions>
+                                        <Expander Header="Datos Personales" Margin="10,15,10,0" Grid.Row="0" Style="{DynamicResource ExpanderStyle}">
+                                            <GroupBox Style="{DynamicResource GroupBoxStyle}">
+                                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="70*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="70*"/>
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackPanel Grid.Column="0" Grid.Row="0">
+                                                            <Label Content="Nombre: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                            <Label Content="Apellidos: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                            <Label Content="Teléfono: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+
+                                                        </StackPanel>
+                                                        <StackPanel Grid.Column="1" Grid.Row="0">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions >
+                                                                    <ColumnDefinition Width="90*"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBox x:Name="txt_nombre_pa" Height="30" Margin="0,3,0,3" VerticalContentAlignment="Center" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_nombre_pa_KeyDown"/>
+                                                                <Image x:Name="adv_nombre_pa"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El nombre no debe estar vacío"/>
+                                                            </Grid>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions >
+                                                                    <ColumnDefinition Width="90*"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBox x:Name="txt_apellidos_pa" Height="30" Margin="0,0,0,3" VerticalContentAlignment="Center" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_apellidos_pa_KeyDown"/>
+                                                                <Image x:Name="adv_apellidos_pa"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="Los apellidos no deben estar vacíos"/>
+                                                            </Grid>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions >
+                                                                    <ColumnDefinition Width="90*"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBox x:Name="txt_telefono_pa" Height="30" Margin="0,0,0,3" VerticalContentAlignment="Center" IsEnabled="False" TextChanged="txt_telefono_pa_TextChanged" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_telefono_pa_KeyDown"/>
+                                                                <Image x:Name="adv_telefono_pa"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El número de teléfono no es válido" />
+                                                            </Grid>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </ScrollViewer>
+                                            </GroupBox>
+                                        </Expander>
+                                        <Expander Grid.Column="0" Header="Ayuda" Margin="10,15,10,10" Grid.Row="1" Style="{DynamicResource ExpanderStyle}">
+                                            <GroupBox Style="{DynamicResource GroupBoxStyle}">
+
+                                                <Grid>
+                                                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="70*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="70*"/>
+                                                            </Grid.RowDefinitions>
+
+                                                            <StackPanel Grid.Column="0" Grid.Row="0">
+                                                                <Label Content="Aportación Mensual: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                                <Label Content="Forma de Pago: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                                <Label Content="Número de Cuenta: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+
+                                                            </StackPanel>
+                                                            <StackPanel Grid.Column="1" Grid.Row="0">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions >
+                                                                        <ColumnDefinition Width="90*"/>
+                                                                        <ColumnDefinition Width="auto"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBox x:Name="txt_aportacion_pa" Height="30" Margin="0,3,0,3" VerticalContentAlignment="Center" IsEnabled="False" PreviewTextInput="NumberValidationDoubleTextBox" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_aportacion_pa_KeyDown"/>
+                                                                    <Image x:Name="adv_aportacion_pa"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="La cantidad de aportación mensual no es válida" />
+                                                                </Grid>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions >
+                                                                        <ColumnDefinition Width="90*"/>
+                                                                        <ColumnDefinition Width="auto"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <ComboBox x:Name="cb_formaPago_pa" Height="30" Margin="0,0,0,3" VerticalContentAlignment="Center" IsEnabled="False">
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/efectivo.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Efectivo" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/tarjeta-de-debito.png" Width="30" Height="30" Margin="2,0" ToolTip=""/>
+                                                                                <TextBlock Text="Tarjeta" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/transferencia.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Transferencia" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/domiciliacion.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Domiciliación" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/bizum.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Bizum" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/vacio.png" Width="25" Height="25" Margin="2,0"/>
+                                                                                <TextBlock Text="NA" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                    </ComboBox>
+                                                                    <Image x:Name="adv_fpago_pa"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="Debe seleccionar una forma de pago distinta a NA" />
+                                                                </Grid>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions >
+                                                                        <ColumnDefinition Width="90*"/>
+                                                                        <ColumnDefinition Width="auto"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBox x:Name="txt_nCuenta_pa" Height="30" Margin="0,0,0,3" IsEnabled="False" TextChanged="txt_nCuenta_pa_TextChanged" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_nCuenta_pa_KeyDown"/>
+                                                                    <Image x:Name="adv_cuenta_pa"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El formato del número de Cuenta no es correcto" />
+                                                                </Grid>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </ScrollViewer>
+                                                </Grid>
+                                            </GroupBox>
+                                        </Expander>
+
+                                        <Grid Grid.Row="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="70*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label Content="Fecha de Inicio de Apadrinamiento: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                            <Grid Grid.Column="1">
+                                                <Grid.ColumnDefinitions >
+                                                    <ColumnDefinition Width="90*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <DatePicker x:Name="dp_inicioApad_pa" Height="30" Margin="0,0,13,3" IsEnabled="False" Style="{DynamicResource DatePickerStyle}"/>
+                                                <Image x:Name="adv_fecha_pa" Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="Debe de haber una fecha seleccionada" />
+                                            </Grid>
+
+                                        </Grid>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="ti_socios" Header="Socios" Style="{DynamicResource TabItemClaroStyle}" >
+                    <Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="60*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="glb_socios">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="90*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel x:Name="sp_botones_so" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
+                                    <Button x:Name="btn_add_so" Click="mi_addSocios_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Añadir Socio">
+                                        <Image Source="Fotos/anadir2.png"  Style="{DynamicResource ImageStyle}" ToolTip="Añadir Socio"/>
+                                    </Button>
+                                    <Button x:Name="btn_udt_so" Click="mi_udtSocios_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Actualizar">
+                                        <Image Source="Fotos/actualizar2.png"  Style="{DynamicResource ImageStyle}" ToolTip="Actualizar Socio"/>
+                                    </Button>
+                                    <Button x:Name="btn_del_so" Click="mi_delSocios_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Borrar">
+                                        <Image Source="Fotos/borrar2.png" Style="{DynamicResource ImageStyle}" ToolTip="Borrar Socio" />
+                                    </Button>
+                                </StackPanel>
+                                <ListBox x:Name="lb_socios" Grid.Row="1" ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="lb_socios_SelectionChanged" Style="{DynamicResource ListBoxStyle}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                                <TextBlock Text=" " VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                                <TextBlock Text="{Binding Apellidos}" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem x:Name="mi_addSocios" Header="Añadir Socio" Click="mi_addSocios_Click" Style="{DynamicResource MenuItemStyle}">
+                                                <MenuItem.Icon>
+                                                    <Image Source="Fotos/anadir2.png" />
+                                                </MenuItem.Icon>
+                                            </MenuItem>
+                                            <MenuItem x:Name="mi_udtSocios" Header="Actualizar Socio" Click="mi_udtSocios_Click" Style="{DynamicResource MenuItemStyle}">
+                                                <MenuItem.Icon>
+                                                    <Image Source="Fotos/actualizar2.png" />
+                                                </MenuItem.Icon>
+                                            </MenuItem>
+                                            <MenuItem x:Name="mi_delSocios" Header="Eliminar Socio" Click="mi_delSocios_Click" Style="{DynamicResource MenuItemStyle}">
+                                                <MenuItem.Icon>
+                                                    <Image Source="Fotos/borrar2.png" />
+                                                </MenuItem.Icon>
+                                            </MenuItem>
+                                        </ContextMenu>
+                                    </ListBox.ContextMenu>
+                                </ListBox>
+                            </Grid>
+
+                            <GridSplitter x:Name="gs_socios" Grid.Column="1" Style="{DynamicResource GridSplitterStyle}"/>
+                            <Grid Grid.Column="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="80*"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid x:Name="g_accion_so" Height="Auto" Visibility="Collapsed" Background="LightCoral">
+                                    <Label x:Name="lbl_accionRealizar_so" HorizontalAlignment="Center" Content="Actualizar" FontWeight="Bold" VerticalAlignment="Center"  Style="{DynamicResource LabelStyle}"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button x:Name="btn_cancelar_so" Click="btn_cancelar_so_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Cancelar">
+                                            <Image Source="Fotos/cancelar.png" Style="{DynamicResource ImageStyle}"/>
+                                        </Button>
+                                        <Button x:Name="btn_aceptar_so" Style="{DynamicResource ButtonStyle}" Click="btn_aceptar_so_Click" ToolTip="Aceptar">
+                                            <Image Source="Fotos/check.png" Style="{DynamicResource ImageStyle}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </Grid>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="40"/>
+                                        </Grid.RowDefinitions>
+                                        <Expander Header="Datos Personales" Margin="10,15,10,0" Grid.Row="0" Style="{DynamicResource ExpanderStyle}">
+                                            <GroupBox Style="{DynamicResource GroupBoxStyle}">
+                                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="70*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                            <RowDefinition Height="70*"/>
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackPanel Grid.Column="0" Grid.Row="0">
+                                                            <Label Content="Nombre: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                            <Label Content="Apellidos: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                            <Label Content="Correo: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+
+                                                        </StackPanel>
+                                                        <StackPanel Grid.Column="1" Grid.Row="0">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions >
+                                                                    <ColumnDefinition Width="90*"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBox x:Name="txt_nombre_so" Height="30" Margin="0,3,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_nombre_so_KeyDown"/>
+                                                                <Image x:Name="adv_nombre_so"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El nombre no debe estar vacío" />
+                                                            </Grid>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions >
+                                                                    <ColumnDefinition Width="90*"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBox x:Name="txt_apellidos_so" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_apellidos_so_KeyDown"/>
+                                                                <Image x:Name="adv_apellidos_so"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="Los apellidos no deben estar vacíos"/>
+                                                            </Grid>
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions >
+                                                                    <ColumnDefinition Width="90*"/>
+                                                                    <ColumnDefinition Width="auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBox x:Name="txt_correo_so" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_correo_so_KeyDown"/>
+                                                                <Image x:Name="adv_correo_so"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El correo no debe estar vacío"/>
+                                                            </Grid>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </ScrollViewer>
+                                            </GroupBox>
+                                        </Expander>
+                                        <Expander Grid.Column="0" Header="Ayuda" Margin="10,15,10,10" Grid.Row="1" Style="{DynamicResource ExpanderStyle}">
+                                            <GroupBox Style="{DynamicResource GroupBoxStyle}">
+                                                <Grid>
+                                                    <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"/>
+                                                                <ColumnDefinition Width="70*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="70*"/>
+                                                            </Grid.RowDefinitions>
+
+                                                            <StackPanel Grid.Column="0" Grid.Row="0">
+                                                                <Label Content="Cuantía: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                                <Label Content="Forma de Pago: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                                <Label Content="Titular de la Cuenta: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                                <Label Content="Número de Cuenta: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Grid.Column="1" Grid.Row="0">
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions >
+                                                                        <ColumnDefinition Width="90*"/>
+                                                                        <ColumnDefinition Width="auto"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBox x:Name="txt_ayuda_so" Height="30" Margin="0,3,0,3" IsEnabled="False" PreviewTextInput="NumberValidationDoubleTextBox" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_ayuda_so_KeyDown"/>
+                                                                    <Image x:Name="adv_ayuda_so"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="La cuantía no debe estar vacía"/>
+                                                                </Grid>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions >
+                                                                        <ColumnDefinition Width="90*"/>
+                                                                        <ColumnDefinition Width="auto"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <ComboBox x:Name="cb_formaPago_so" Height="30" Margin="0,0,0,3" VerticalContentAlignment="Center" IsEnabled="False">
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/efectivo.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Efectivo" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/tarjeta-de-debito.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Tarjeta" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/transferencia.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Transferencia" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/domiciliacion.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Domiciliación" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/bizum.png" Width="30" Height="30" Margin="2,0"/>
+                                                                                <TextBlock Text="Bizum" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                        <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <Image Source="Fotos/vacio.png" Width="28" Height="28" Margin="2,0"/>
+                                                                                <TextBlock Text="NA" Margin="3,0" VerticalAlignment="Center" Style="{DynamicResource TextBlockStyle}"/>
+                                                                            </StackPanel>
+                                                                        </ComboBoxItem>
+                                                                    </ComboBox>
+                                                                    <Image x:Name="adv_fpago_so"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="La forma de pago seleccionada debe ser distinta de NA"/>
+                                                                </Grid>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions >
+                                                                        <ColumnDefinition Width="90*"/>
+                                                                        <ColumnDefinition Width="auto"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBox x:Name="txt_titularCuenta_so" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_titularCuenta_so_KeyDown"/>
+                                                                    <Image x:Name="adv_tCuenta_so"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El titular de la cuenta no debe estar vacío"/>
+                                                                </Grid>
+                                                                <Grid>
+                                                                    <Grid.ColumnDefinitions >
+                                                                        <ColumnDefinition Width="90*"/>
+                                                                        <ColumnDefinition Width="auto"/>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <TextBox x:Name="txt_nCuenta_so" Height="30" Margin="0,0,0,3" IsEnabled="False" TextChanged="txt_nCuenta_pa_TextChanged" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_nCuenta_so_KeyDown"/>
+                                                                    <Image x:Name="adv_cuenta_so"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El formato del número de la cuenta no es válido" />
+                                                                </Grid>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </ScrollViewer>
+                                                </Grid>
+                                            </GroupBox>
+                                        </Expander>
+                                    </Grid>
+                                </ScrollViewer>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="ti_voluntarios" Header="Voluntarios" Style="{DynamicResource TabItemClaroStyle}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="60*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="glb_voluntarios">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="90*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel x:Name="sp_botones_vo" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
+                                <Button x:Name="btn_add_vo" Click="mi_addVoluntarios_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Añadir Voluntario">
+                                    <Image Source="Fotos/anadir2.png"  Style="{DynamicResource ImageStyle}" ToolTip="Añadir Voluntario"/>
+                                </Button>
+                                <Button x:Name="btn_udt_vo" Click="mi_udtVoluntarios_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Actualizar">
+                                    <Image Source="Fotos/actualizar2.png"  Style="{DynamicResource ImageStyle}" ToolTip="Actualizar Voluntario"/>
+                                </Button>
+                                <Button x:Name="btn_del_vo" Click="mi_delVoluntarios_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Borrar">
+                                    <Image Source="Fotos/borrar2.png" Style="{DynamicResource ImageStyle}" ToolTip="Borrar Voluntario"/>
+                                </Button>
+                            </StackPanel>
+                            <ListBox x:Name="lb_voluntarios" Grid.Row="1" ItemsSource="{Binding}" SelectedIndex="0" SelectionChanged="lb_voluntarios_SelectionChanged" Style="{DynamicResource ListBoxStyle}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="40" Height="40" Source="{Binding Foto}"/>
+                                            <TextBlock Text="{Binding Nombre}" VerticalAlignment="Center" Margin="10,0,0,0" Style="{DynamicResource TextBlockStyle}"/>
+                                            <TextBlock Text=" " VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                            <TextBlock Text="{Binding Apellidos}" VerticalAlignment="Center" Margin="0" Style="{DynamicResource TextBlockStyle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem x:Name="mi_addVoluntarios" Header="Añadir Voluntario" Click="mi_addVoluntarios_Click" Style="{DynamicResource MenuItemStyle}">
+                                            <MenuItem.Icon>
+                                                <Image Source="Fotos/anadir2.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Name="mi_udtVoluntarios" Header="Actualizar Voluntario" Click="mi_udtVoluntarios_Click" Style="{DynamicResource MenuItemStyle}">
+                                            <MenuItem.Icon>
+                                                <Image Source="Fotos/actualizar2.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Name="mi_delVoluntarios" Header="Eliminar Voluntario" Click="mi_delVoluntarios_Click" Style="{DynamicResource MenuItemStyle}">
+                                            <MenuItem.Icon>
+                                                <Image Source="Fotos/borrar2.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                        </Grid>
+
+                        <GridSplitter x:Name="gs_voluntarios" Grid.Column="1" Style="{DynamicResource GridSplitterStyle}"/>
+
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="35*"/>
+                                <RowDefinition Height="60*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid x:Name="g_accion_vo" Height="Auto" Grid.ColumnSpan="2" Visibility="Collapsed" Background="LightCoral" Margin="0,0,0,0" >
+                                <Label x:Name="lbl_accionRealizar_vo" HorizontalAlignment="Center" Content="Actualizar" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center" Style="{DynamicResource LabelStyle}"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button x:Name="btn_cancelar_vo" Style="{DynamicResource ButtonStyle}" Margin="5" Click="btn_cancelar_vo_Click" Background="{x:Null}" BorderBrush="{x:Null}" ToolTip="Cancelar">
+                                        <Image Source="Fotos/cancelar.png" Style="{DynamicResource ImageStyle}"/>
+                                    </Button>
+                                    <Button x:Name="btn_aceptar_vo" Style="{DynamicResource ButtonStyle}" Margin="5" Click="btn_aceptar_vo_Click" Background="{x:Null}" BorderBrush="{x:Null}" ToolTip="Aceptar">
+                                        <Image Source="Fotos/check.png" Style="{DynamicResource ImageStyle}"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                            <Image x:Name="img_foto_vo" Margin="20,20,20,0" Grid.Row="1"/>
+                            <Button x:Name="btn_cargarImg_vo" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,35,5" IsEnabled="False" Grid.Row="1" Click="btn_cargarImg_vo_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Agregar imagen">
+                                <Image Source="Fotos/foto.png" Style="{DynamicResource ImageStyle}" ToolTip="Agregar imagen"/>
+                            </Button>
+                            <GroupBox Grid.Column="1" Header="Datos Personales" Margin="10,10,10,0" Grid.Row="1" Style="{DynamicResource GroupBoxStyle}">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="57"/>
+                                            <ColumnDefinition Width="70*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.ColumnSpan="2">
+                                            <Label Content="Nombre: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                            <Label Content="Apellidos: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                            <Label Content="DNI: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions >
+                                                    <ColumnDefinition Width="90*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox x:Name="txt_nombre_vo" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_nombre_vo_KeyDown"/>
+                                                <Image x:Name="adv_nombre_vo"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El nombre no debe estar vació"/>
+                                            </Grid>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions >
+                                                    <ColumnDefinition Width="90*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox x:Name="txt_apellidos_vo" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_apellidos_vo_KeyDown"/>
+                                                <Image x:Name="adv_apellidos_vo"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="Los apellidos no deben estar vaciós"/>
+                                            </Grid>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions >
+                                                    <ColumnDefinition Width="90*"/>
+                                                    <ColumnDefinition Width="auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBox x:Name="txt_dni_vo" Height="30" Margin="0,0,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_dni_vo_KeyDown"/>
+                                                <Image x:Name="adv_dni_vo"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El DNI no debe estar vació"/>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </ScrollViewer>
+                            </GroupBox>
+                            <ScrollViewer Grid.Row="2" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Margin="10">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Expander Grid.Row="0" Header="Datos de Contacto" Margin="10,15,10,10" Style="{DynamicResource ExpanderStyle}">
+                                        <GroupBox Style="{DynamicResource GroupBoxStyle}">
+                                            <Grid Margin="0,3,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="70*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel>
+                                                    <Label Content="Correo: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                    <Label Content="Teléfono: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" Grid.Row="1">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions >
+                                                            <ColumnDefinition Width="90*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBox x:Name="txt_correo_vo" Height="30" Margin="0,3,0,3" IsEnabled="False" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_correo_vo_KeyDown"/>
+                                                        <Image x:Name="adv_correo_vo"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El correo no debe estar vació"/>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions >
+                                                            <ColumnDefinition Width="90*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBox x:Name="txt_telefono_vo" Height="30" Margin="0,0,0,3" IsEnabled="False" TextChanged="txt_telefono_pa_TextChanged" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_telefono_vo_KeyDown"/>
+                                                        <Image x:Name="adv_telefono_vo"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El número de teléfono introducido no es válido"/>
+                                                    </Grid>
+                                                </StackPanel>
+                                            </Grid>
+                                        </GroupBox>
+                                    </Expander>
+                                    <Expander Grid.Row="1" Grid.Column="1" Header="Disponibilidad" Margin="10,15,10,10" Style="{DynamicResource ExpanderStyle}">
+                                        <GroupBox Grid.Column="0" Margin="0,3,0,0" Style="{DynamicResource GroupBoxStyle}">
+                                            <Grid Margin="0,3,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="70*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="70*"/>
+                                                </Grid.RowDefinitions>
+                                                <Label Content="Horario: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,3,5,3" VerticalAlignment="Top"  Style="{DynamicResource LabelStyle}"/>
+                                                <Grid Grid.Column="1">
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="90*"/>
+                                                        <ColumnDefinition Width="auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBox Name="txt_horario_vo" TextWrapping="Wrap" AcceptsReturn="True" Margin="0,3,0,3" IsEnabled="False" VerticalContentAlignment="Center" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_horario_vo_KeyDown"/>
+                                                    <Image x:Name="adv_horario_vo"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="El horario no debe estar vacío"/>
+                                                </Grid>
+                                                <StackPanel Grid.Column="0" Grid.Row="1">
+                                                    <Label Content="Zona de Actuación: " HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,0,5,3"  Style="{DynamicResource LabelStyle}"/>
+                                                    <Label Content="Conocimientos Veterinarios: "  HorizontalContentAlignment="Right" HorizontalAlignment="Right" Height="30" Margin="5,5,5,3" VerticalContentAlignment="Center"  Style="{DynamicResource LabelStyle}"/>
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" Grid.Row="1">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions >
+                                                            <ColumnDefinition Width="90*"/>
+                                                            <ColumnDefinition Width="auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBox x:Name="txt_zona_vo" Height="30" Margin="0,0,0,3" IsEnabled="False" VerticalAlignment="Center" Style="{DynamicResource TextBoxStyle}" KeyDown="txt_zona_vo_KeyDown"/>
+                                                        <Image x:Name="adv_zona_vo"  Width="30" Height="30" Visibility="Collapsed" Source="Fotos/aviso.png" Grid.Column="1" Margin="10,0,10,0" ToolTip="La zona de actuación no debe estar vacía" />
+                                                    </Grid>
+                                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                                        <ProtectoraIPO:ToggleButton x:Name="tbtn_conocimientos_vo" Height="40" Width="40" HorizontalAlignment="Center" Margin="0,3" IsEnabled="False" MouseLeftButtonDown="tbtn_conocimientos_vo_MouseLeftButtonDown"/>
+                                                        <Label x:Name="lbl_conocimientos" HorizontalAlignment="Center" VerticalAlignment="Center" Content="No posee"  Style="{DynamicResource LabelStyle}"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </GroupBox>
+                                    </Expander>
+                                </Grid>
+                            </ScrollViewer>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem x:Name="ti_listas" Header="Listas" Style="{DynamicResource TabItemClaroStyle}" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Lista: " HorizontalContentAlignment="Right" HorizontalAlignment="Left" Height="30" Margin="5,3,5,3" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                            <ComboBox x:Name="cb_lista" SelectionChanged="cb_lista_SelectionChanged" VerticalContentAlignment="Center">
+                                <ComboBoxItem Content="Perros" ToolTip="Perros" Style="{DynamicResource ComboBoxItemStyle}"/>
+                                <ComboBoxItem Content="Padrinos" ToolTip="Padrinos" Style="{DynamicResource ComboBoxItemStyle}"/>
+                                <ComboBoxItem Content="Socios" ToolTip="Socios" Style="{DynamicResource ComboBoxItemStyle}"/>
+                                <ComboBoxItem Content="Voluntarios" ToolTip="Voluntarios" Style="{DynamicResource ComboBoxItemStyle}"/>
+                            </ComboBox>
+                            <Button x:Name="btn_ver" HorizontalAlignment="Left" Margin="20,0" Click="btn_ver_Click" Style="{DynamicResource ButtonStyle}" ToolTip="Ir a " >
+                                <Image Source="Fotos/ver3.png" Style="{DynamicResource ImageStyle}" ToolTip="Ir a la vista del elemento seleccionado"/>
+                            </Button>
+
+                        </StackPanel>
+                        <DataGrid x:Name="dg_perros" Margin="5" Grid.Row="1" AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" HorizontalAlignment="Left">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Foto  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Width="40" Height="40" Source="{Binding Foto}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Nombre  " Binding="{Binding Nombre}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Raza  " Binding="{Binding Raza}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Sexo  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox x:Name="cb_sexo_li" Height="Auto" VerticalContentAlignment="Center" SelectedIndex="{Binding Sexo}" IsEnabled="False">
+                                                <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="Fotos/macho.png" Width="20" Height="20" Margin="2,0" ToolTip=""/>
+                                                        <TextBlock Text="Macho" Margin="3,0" ToolTip="Macho" Style="{DynamicResource TextBlockStyle}"/>
+                                                    </StackPanel>
+                                                </ComboBoxItem>
+                                                <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="Fotos/hembra.png" Width="22" Height="22"/>
+                                                        <TextBlock Text="Hembra" Margin="5,0" ToolTip="Hembra" Style="{DynamicResource TextBlockStyle}"/>
+                                                    </StackPanel>
+                                                </ComboBoxItem>
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Edad  " Binding="{Binding Edad}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Peso  " Binding="{Binding Peso}" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="PPP  " Binding="{Binding Ppp}" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="Sociable  " Binding="{Binding Sociable}" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="Vacunado  " Binding="{Binding Vacunado}" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="Esterilizado  " Binding="{Binding Esterilizado}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Chip  " Binding="{Binding Chip}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Fecha de Entrada  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DatePicker SelectedDate="{Binding FechaEntrada}" BorderThickness="0" IsEnabled="False" Style="{DynamicResource DatePickerStyle}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Estado  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox Height="Auto" VerticalContentAlignment="Center" SelectedIndex="{Binding Estado}" IsEnabled="False">
+                                                <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="Fotos/adoptado.png" Width="30" Height="30" Margin="2,0" ToolTip=""/>
+                                                        <TextBlock Text="Adoptado" Margin="3,0" VerticalAlignment="Center" ToolTip="Adoptado" Style="{DynamicResource TextBlockStyle}"/>
+                                                    </StackPanel>
+                                                </ComboBoxItem >
+                                                <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="Fotos/cuarentena.png" Width="30" Height="30" Margin="2,0"/>
+                                                        <TextBlock Text="Cuarentena" Margin="3,0" VerticalAlignment="Center" ToolTip="Cuarentena" Style="{DynamicResource TextBlockStyle}"/>
+                                                    </StackPanel>
+                                                </ComboBoxItem>
+                                                <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="Fotos/reservado.png" Width="30" Height="30" Margin="2,0" ToolTip=""/>
+                                                        <TextBlock Text="Reservado" Margin="3,0" VerticalAlignment="Center" ToolTip="Reservado" Style="{DynamicResource TextBlockStyle}"/>
+                                                    </StackPanel>
+                                                </ComboBoxItem>
+                                                <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="Fotos/fallecido.png" Width="30" Height="30" Margin="2,0"/>
+                                                        <TextBlock Text="Fallecido" Margin="3,0" VerticalAlignment="Center" ToolTip="Fallecido" Style="{DynamicResource TextBlockStyle}"/>
+                                                    </StackPanel>
+                                                </ComboBoxItem>
+                                                <ComboBoxItem Style="{DynamicResource ComboBoxItemStyle}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="Fotos/vacio.png" Width="30" Height="30" Margin="2,0"/>
+                                                        <TextBlock Text="NA" Margin="3,0" VerticalAlignment="Center" ToolTip="NA" Style="{DynamicResource TextBlockStyle}"/>
+                                                    </StackPanel>
+                                                </ComboBoxItem>
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid x:Name="dg_padrinos" Margin="5" Grid.Row="2" Visibility="Collapsed" AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" HorizontalAlignment="Left">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nombre  " Binding="{Binding Nombre}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Apellidos  " Binding="{Binding Apellidos}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Telefono  " Binding="{Binding Telefono}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Aportación Mensual  " Binding="{Binding AportacionMensual}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Forma de Pago  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox Height="30" VerticalContentAlignment="Center" SelectedIndex="{Binding FormaPago}" IsEnabled="False" >
+                                                <ComboBoxItem Content="Efectivo"/>
+                                                <ComboBoxItem Content="Tarjeta"/>
+                                                <ComboBoxItem Content="Transferencia"/>
+                                                <ComboBoxItem Content="Domiciliación"/>
+                                                <ComboBoxItem Content="Bizum"/>
+                                                <ComboBoxItem Content="NA"/>
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Número de Cuenta  " Binding="{Binding NumeroCuenta}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Fecha de Inicio Apadrinamiento  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <DatePicker SelectedDate="{Binding FechaComienzoApadrinamiento}" BorderThickness="0" IsEnabled="False" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid x:Name="dg_socios" Margin="5" Grid.Row="3" Visibility="Collapsed" AutoGenerateColumns="False" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" HorizontalAlignment="Left">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Nombre  " Binding="{Binding Nombre}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Apellidos  " Binding="{Binding Apellidos}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Correo  "  Binding="{Binding Correo}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Ayuda  " Binding="{Binding CuantiaAyuda}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Forma de Pago  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox Height="30" VerticalContentAlignment="Center" SelectedIndex="{Binding FormaPago}" IsEnabled="False" >
+                                                <ComboBoxItem Content="Efectivo"/>
+                                                <ComboBoxItem Content="Tarjeta"/>
+                                                <ComboBoxItem Content="Transferencia"/>
+                                                <ComboBoxItem Content="Domiciliación"/>
+                                                <ComboBoxItem Content="Bizum"/>
+                                                <ComboBoxItem Content="NA"/>
+                                            </ComboBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Titular de la Cuenta  " Binding="{Binding TitularCuenta}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Número de Cuenta  " Binding="{Binding NumeroCuenta}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <DataGrid x:Name="dg_voluntarios" Margin="5" Grid.Row="4" Visibility="Collapsed" AutoGenerateColumns="False" VerticalContentAlignment="Center" Style="{DynamicResource DataGridStyle}" CellStyle="{DynamicResource DataGridCellStyle}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" HorizontalAlignment="Left">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Foto  ">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Width="40" Height="40" Source="{Binding Foto}"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Nombre  " Binding="{Binding Nombre}" IsReadOnly="True" />
+                                <DataGridTextColumn Header="Apellidos  " Binding="{Binding Apellidos}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="DNI  " Binding="{Binding Dni}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Correo  " Binding="{Binding Correo}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Teléfono  " Binding="{Binding Telefono}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Horario  " Binding="{Binding HorarioDisponibilidad}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Zona de Actuación  " Binding="{Binding ZonaActuacion}" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="Conocimientos Veterinarios  " Binding="{Binding ConocimientosVeterinarios}" IsReadOnly="True"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Border>
+        <Image x:Name="gif_control" Grid.Column="1" HorizontalAlignment="Left" Height="60" Margin="20,20,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="250" gif:ImageBehavior.AnimatedSource="Fotos/PerrosCorriendo.gif" FlowDirection="RightToLeft" MouseEnter="Image_MouseEnter"/>
+        <Image x:Name="nogif_control" Grid.Column="1" HorizontalAlignment="Left" Height="60" Margin="20,20,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="250" Source="Fotos/PerrosCorriendo.gif" FlowDirection="RightToLeft" Visibility="Collapsed"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Center" >
+            <Label Content="Bienvenido " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Style="{DynamicResource LabelStyle}"/>
+            <Label x:Name="lbl_nombre_is" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource bordeClaro}" Style="{DynamicResource LabelStyle}"/>
+            <Label Content=" " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Style="{DynamicResource LabelStyle}"/>
+            <Label x:Name="lbl_apellidos_is" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource bordeClaro}" Style="{DynamicResource LabelStyle}"/>
+            <Label Content=". Último acceso: " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Style="{DynamicResource LabelStyle}"/>
+            <Label x:Name="lbl_ultimoInicio_is" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="{DynamicResource bordeClaro}" Style="{DynamicResource LabelStyle}"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

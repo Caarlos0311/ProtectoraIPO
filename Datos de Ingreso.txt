@@ -1,0 +1,9 @@
+Usuario existente:
+
+Usuario: admin
+Contraseña: admin
+
+
+Opcionalmente se puede registrar un nuevo usuario para ello es necesario el siguiente código de control:
+
+admin2021admin

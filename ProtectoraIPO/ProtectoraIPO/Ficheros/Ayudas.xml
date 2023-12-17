@@ -1,0 +1,11 @@
+﻿<Ayudas>
+	<Ayuda Id="1" Titulo="¿Cómo iniciar sesión?" Pasos="[1,2,3,4]"/>
+	<Ayuda Id="2" Titulo="¿Cómo registrar un usuario?" Pasos="[5,6,7,8,9]"/>
+	<Ayuda Id="3" Titulo="¿Qué hacer si has olvidado tu contraseña?" Pasos="[10,11,12]"/>
+	<Ayuda Id="4" Titulo="¿Cómo navegar dentro de la interfaz?" Pasos="[13,14,15,16,17]"/>
+	<Ayuda Id="5" Titulo="¿Cómo añadir un perro, voluntario, socio o padrino?" Pasos="[18,19,20]"/>
+	<Ayuda Id="6" Titulo="¿Cómo actualizar un perro, voluntario, socio o padrino?" Pasos="[21,22,23]"/>
+	<Ayuda Id="7" Titulo="¿Cómo borrar un perro, voluntario, socio o padrino?" Pasos="[24,25]"/>
+	<Ayuda Id="8" Titulo="¿Cómo listar dentro de la interfaz?" Pasos="[26,27]"/>
+	<Ayuda Id="9" Titulo="¿Cómo cambiar la configuración de la interfaz?" Pasos="[28,29,30,31,32,33}"/>
+</Ayudas>

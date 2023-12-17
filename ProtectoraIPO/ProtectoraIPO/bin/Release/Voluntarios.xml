@@ -1,0 +1,4 @@
+<Voluntarios>
+  <Voluntario Nombre="Jose" Apellidos="Sánchez Pérez" Correo="luissp@gmail.com" DNI="01234567A" Telefono="610-123-234" Foto="Fotos/Voluntarios/LuisSanchezPerez.jpg" HorarioDisponibilidad="16:00 - 20:00" ZonaActuacion="Ciudad Real" ConocimientosVeterinarios="True" />
+  <Voluntario Nombre="María" Apellidos="García" Correo="mariagarcia@gmail.com" DNI="07654321B" Telefono="6121232346" Foto="Fotos/Voluntarios/MariaGarcia.jpg" HorarioDisponibilidad="9:00 - 13:00" ZonaActuacion="Ciudad Real" ConocimientosVeterinarios="False" />
+</Voluntarios>
